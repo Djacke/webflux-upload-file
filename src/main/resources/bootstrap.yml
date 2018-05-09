@@ -1,0 +1,19 @@
+server.port: 8181
+spring:
+  application.name: ops
+  profiles.active: development
+  cloud.config.failFast: true
+
+---
+spring:
+  profiles: integTest
+  cloud.config.enabled: false
+  data.mongodb.port: 0
+  mongodb.embedded.version: 3.2.9
+
+feign.okhttp.enabled: true
+eureka:
+  client:
+    enabled: false
+
+---

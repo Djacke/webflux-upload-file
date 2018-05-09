@@ -1,0 +1,104 @@
+buildscript {
+    ext {
+        springBootVersion = '2.0.1.RELEASE'
+    }
+    repositories {
+        mavenLocal()
+        maven {
+            name "aliyun1"
+            url 'http://maven.aliyun.com/nexus/content/groups/public'
+        }
+        maven {
+            name "aliyun2"
+            url 'http://maven.aliyun.com/mvn/repository/'
+        }
+        maven {
+            name "spring repo"
+            url "http://repo.spring.io/release"
+        }
+        maven {
+            name "spring milestone"
+            url "https://repo.spring.io/milestone/"
+        }
+        maven {
+            name "spring snapshot"
+            url "https://repo.spring.io/snapshot"
+        }
+
+        jcenter()
+        mavenCentral()
+        maven {
+            url 'http://repos.zeroturnaround.com/nexus/content/groups/zt-public/'
+        }
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+group 'cn.ops'
+version '1.0-SNAPSHOT'
+sourceCompatibility = 1.8
+
+
+repositories {
+    mavenLocal()
+    maven {
+        name "aliyun1"
+        url 'http://maven.aliyun.com/nexus/content/groups/public'
+    }
+    maven {
+        name "aliyun2"
+        url 'http://maven.aliyun.com/mvn/repository/'
+    }
+    maven {
+        name "pilipa's repo"
+        url "https://pilipa-assets.oss-cn-beijing.aliyuncs.com/repository/"
+    }
+    maven {
+        name "spring repo"
+        url "http://repo.spring.io/release"
+    }
+    maven {
+        name "spring milestone"
+        url "https://repo.spring.io/milestone/"
+    }
+    maven {
+        name "spring snapshot"
+        url "https://repo.spring.io/snapshot"
+    }
+
+    jcenter()
+    mavenCentral()
+    maven {
+        url 'http://repos.zeroturnaround.com/nexus/content/groups/zt-public/'
+    }
+}
+
+ext {
+    springCloudVersion = 'Finchley.M9'
+}
+
+dependencies {
+    compile 'org.springframework.boot:spring-boot-starter-webflux'
+    compile 'org.apache.poi:poi:3.17'
+    compile 'org.apache.poi:poi-ooxml:3.17'
+    compile 'com.google.guava:guava:23.5-jre'
+    compile 'commons-io:commons-io:2.5'
+
+
+    compileOnly('org.projectlombok:lombok')
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    testCompile 'org.springframework.boot:spring-boot-starter-test'
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+    }
+}
